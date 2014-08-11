@@ -1,5 +1,6 @@
 package app.domain;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -10,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OrderBy;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -23,23 +25,33 @@ public class Book {
     @Column(nullable = false, length = 128)
     private String title;
 
-    @Column(nullable = false, length = 32)
+    @Column(nullable = false, length = 13)
     private String isbn;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.PERSIST)
     @NotNull @Size(min = 1)
+    @OrderBy("lastName ASC")
     private Set<Author> authors = new HashSet<Author>();
 
     protected Book() {}
 
-    public Book(final String title, final String isbn) {
+    public Book(final String title, final String isbn, final Author... authors) {
         this.title = title;
         this.isbn = isbn;
+        this.authors.addAll(Arrays.asList(authors));
     }
 
     @Override
     public String toString() {
         return String.format("Book[id=%d, title='%s', isbn='%s']", id, title, isbn);
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(final Long id) {
+        this.id = id;
     }
 
     public void setTitle(final String title) {

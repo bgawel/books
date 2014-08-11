@@ -1,7 +1,7 @@
 package app.usecase.author;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 import app.domain.Author;
 
-interface AuthorRepository extends CrudRepository<Author, Long> {
+interface AuthorRepository extends JpaRepository<Author, Long> {
 }

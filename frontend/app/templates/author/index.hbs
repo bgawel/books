@@ -1,0 +1,22 @@
+<h4 class="title">Author</h4>
+{{#link-to 'author.edit'}}Edit{{/link-to}}
+<div>
+  <b>Last name:</b>
+  <span> {{lastName}}</span>
+</div>
+<div>
+  <b>First name:</b>
+  <span> {{firstName}}</span>
+</div>
+<div>
+  <b>Books in catalog:</b>
+  <span> {{nbooks}} </span>
+  {{#if nbooks}}
+    {{#if allBooksDisplayed}}
+      <button {{action 'hideBooks'}}>Hide books</button>
+      {{render 'author.books' books}}
+    {{else}}
+      <button {{action 'displayBooks'}}>Display books</button>
+    {{/if}}
+  {{/if}} 
+</div>

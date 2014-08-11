@@ -1,0 +1,13 @@
+<div class="col-md-3">
+  {{#link-to 'authors.create'}}Add new{{/link-to}}
+  <div class="well">
+    <ul class="nav nav-pills nav-stacked">
+      {{#each model}}
+      <li>{{#link-to 'author.index' this}}{{this.lastName}}, {{this.firstName}}{{/link-to}}</li>
+      {{/each}}
+    </ul>
+  </div>
+</div>
+<div class="col-md-9">
+  {{outlet}}
+</div>

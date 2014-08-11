@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import app.domain.Author;
+import app.domain.Book;
 
 @Component
 public class Bootstrap implements InitializingBean, ApplicationContextAware {
@@ -30,7 +31,10 @@ public class Bootstrap implements InitializingBean, ApplicationContextAware {
     private void initializeDevelopmentData() {
         CrudRepository<Author, Long> authorRepository = (CrudRepository<Author, Long>) applicationContext
                 .getBean("authorRepository");
-        authorRepository.save(new Author("John", "Doe"));
+        CrudRepository<Book, Long> bookRepository = (CrudRepository<Book, Long>) applicationContext
+                .getBean("bookRepository");
+        bookRepository.save(new Book("The Dinner", "9780770437855", new Author("Herman", "Koch")));
+        authorRepository.save(new Author("Gillian", "Flynn"));
     }
 
     @Override

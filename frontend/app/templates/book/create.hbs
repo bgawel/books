@@ -1,0 +1,35 @@
+<h4 class="title">New book</h4>
+<form class="form-horizontal" {{action 'save' on='submit'}}>
+  <div>
+    <b>Title:</b>
+    <span>{{input value=title required="required" id="title" name="title"}}</span>
+  </div>
+  <div>
+    <b>ISBN:</b>
+    <span>{{input value=isbn required="required" id="isbn" name="isbn"}}</span>
+  </div>
+  <br>
+  <fieldset>
+    <legend>Author(s):</legend>
+    {{#with this as root}}
+    {{#each authors}}
+    <div>
+      <b>Last name:</b>
+      <span>{{input value=this.lastName required="required" name="lastName"}}</span>
+    </div>
+    <div>
+      <b>First name:</b>
+      <span>{{input value=this.firstName required="required" name="firstName"}}</span>
+    </div>
+    {{#if root.showRemove}}
+    <button {{action 'removeAuthor' this.id}}>Remove</button>
+    {{/if}}
+    {{/each}}
+    {{/with}}
+    <button {{action 'addAuthor'}}>Add author</button>    
+  </fieldset>
+  <br>
+  <div>
+    <button type="submit">Save</button>
+  </div>
+</form>

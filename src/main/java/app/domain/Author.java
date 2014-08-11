@@ -9,8 +9,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OrderBy;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Author {
 
     @Id
@@ -24,9 +28,10 @@ public class Author {
     private String lastName;
 
     @ManyToMany(mappedBy = "authors")
+    @OrderBy("title ASC")
     private Set<Book> books = new HashSet<Book>();
 
-    protected Author() {}
+    public Author() {}
 
     public Author(final String firstName, final String lastName) {
         this.firstName = firstName;
@@ -35,11 +40,15 @@ public class Author {
 
     @Override
     public String toString() {
-        return String.format("Book[id=%d, firstName='%s', lastName='%s']", id, firstName, lastName);
+        return String.format("Author[id=%d, firstName='%s', lastName='%s']", id, firstName, lastName);
     }
 
     public Long getId() {
         return id;
+    }
+
+    public void setId(final Long id) {
+        this.id = id;
     }
 
     public String getFirstName() {

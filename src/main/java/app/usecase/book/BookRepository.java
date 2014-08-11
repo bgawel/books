@@ -1,8 +1,8 @@
 package app.usecase.book;
 
-import org.springframework.data.repository.Repository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import app.domain.Book;
 
-interface BookRepository extends Repository<Book, Long> {
+interface BookRepository extends JpaRepository<Book, Long> {
 }

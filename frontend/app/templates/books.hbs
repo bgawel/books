@@ -1,0 +1,13 @@
+<div class="col-md-3">
+  {{#link-to 'books.create'}}Add new{{/link-to}}
+  <div class="well">
+    <ul class="nav nav-pills nav-stacked">
+      {{#each model}}
+      <li>{{#link-to 'book.index' this}}{{this.title}}{{/link-to}}</li>
+      {{/each}}
+    </ul>
+  </div>
+</div>
+<div class="col-md-9">
+  {{outlet}}
+</div>

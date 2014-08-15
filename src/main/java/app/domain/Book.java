@@ -12,10 +12,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OrderBy;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
+@Table(name = "BOOK", uniqueConstraints = @UniqueConstraint(columnNames = {"isbn"}))
 public class Book {
 
     @Id
@@ -26,6 +29,7 @@ public class Book {
     private String title;
 
     @Column(nullable = false, length = 13)
+    @Size(min = 13, max = 13)
     private String isbn;
 
     @ManyToMany(cascade = CascadeType.PERSIST)

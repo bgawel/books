@@ -13,6 +13,4 @@ public interface BookUseCaseFacade {
     void deleteBook(Long id);
 
     Book createBook(Book newBook);
-
-    Book updateBook(Book book);
 }

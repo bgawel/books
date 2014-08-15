@@ -13,4 +13,8 @@ public interface AuthorUseCaseFacade {
     void deleteAuthor(Long id);
 
     Author updateAuthor(Author author);
+
+    Author getAuthor(Long id);
+
+    Author findByName(String firstName, String lastName);
 }

@@ -1,18 +1,19 @@
-<h4 class="title">Book</h4>
-<!-- {{#link-to 'book.edit'}}Edit{{/link-to}} -->
-<div>
-  <b>Title:</b>
-  <span> {{title}}</span>
-</div>
-<div>
-  <b>ISBN:</b>
-  <span> {{isbn}}</span>
-</div>
-<div>
-  <b>Author(s):</b>
-  <span>
-  {{#each authors}}
-    {{this.lastName}}, {{this.firstName}}
-  {{/each}}
-  </span>
+<div class="row">
+  <h4 class="title">Book</h4>
+  <div>
+    <b>Title:</b>
+    <span> {{title}}</span>
+  </div>
+  <div>
+    <b>ISBN:</b>
+    <span> {{isbn}}</span>
+  </div>
+  <div>
+    <b>Author(s):</b>
+    <span>
+    {{#each authors}}
+      {{this.lastName}}, {{this.firstName}} |
+    {{/each}}
+    </span>
+  </div>
 </div>

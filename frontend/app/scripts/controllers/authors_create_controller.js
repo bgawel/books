@@ -10,7 +10,7 @@ Frontend.AuthorsCreateController = Ember.ObjectController.extend({
         controller.transitionToRoute('author.edit', response);
       },function(response) {
         author.deleteRecord();
-        console.error(response);
+        controller.set('error', response.responseJSON.message);
       });
     }
   }

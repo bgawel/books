@@ -1,26 +1,50 @@
-<h4 class="title">Edit author</h4>
-{{#link-to 'author.index'}}Cancel{{/link-to}}
-<form class="form-horizontal" {{action 'save' on='submit'}}>
-  <div>
-    <b>Last name:</b>
-    <span>{{input value=lastName required="required"}}</span>
-  </div>
-  <div>
-    <b>First name:</b>
-    <span>{{input value=firstName required="required"}}</span>
-  </div>
-    <button type="submit">Save</button>
-    <button {{action 'delete'}}>Delete</button>
-  <div>
-  </div>
-</form>
-<br>
-<fieldset>
-  <legend>Books:</legend>
-  <ul>
-    {{#each books}}
-      <li>{{this.title}}, ISBN: {{this.isbn}} <button {{action 'removeBook' this.id}}>Remove</button></li>
-    {{/each}}
-  </ul>
-  <button {{action 'addBook' id}}>Add new</button>
-</fieldset>
+<div class="row">
+  {{#if error}}
+  <div class="alert alert-danger" role="alert">{{error}}</div>
+  {{/if}}
+  <h4 class="title">Edit author</h4>
+  {{#link-to 'author.index'}}Quit{{/link-to}}
+  <form class="form-horizontal" {{action 'save' on='submit'}}>
+    <div class="form-group">
+      <label for="lastName" class="col-sm-2 control-label">Last name *</label>
+      <div class="col-sm-8">
+        {{input value=lastName required="required" name="lastName" type="text" class="form-control" maxlength="128"}}
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="firstName" class="col-sm-2 control-label">First name *</label>
+      <div class="col-sm-8">
+        {{input value=firstName required="required" name="firstName" type="text" class="form-control" maxlength="128"}}
+      </div>
+    </div>
+    <button class="btn btn-primary" type="submit">Save</button>
+    <button class="btn btn-danger" {{action 'delete'}}>Delete</button>
+  </form>
+  <br>
+  <fieldset>
+    <legend>Books:</legend>
+    <ul>
+      {{#each books}}
+        <li>{{this.title}}, ISBN: {{this.isbn}} <button class="btn btn-warning" {{action 'removeBook' this.id}}>Remove</button></li>
+      {{/each}}
+    </ul>
+    <div>
+      <h4>New book</h4>
+      <form class="form-horizontal" {{action 'saveBook' on=submit}}>
+        <div class="form-group">
+          <label for="title" class="col-sm-2 control-label">Title *</label>
+          <div class="col-sm-8">
+            {{input value=title required="required" id="title" name="title" type="text" class="form-control" maxlength="128"}}
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="title" class="col-sm-2 control-label">ISBN *</label>
+          <div class="col-sm-3">
+            {{input value=isbn required="required" id="isbn" name="isbn" type="text" class="form-control" maxlength="13" pattern="[0-9]{13}"}}
+          </div>
+        </div>
+        <button class="btn btn-primary" type="submit">Save book</button>
+      </form>
+    </div>
+  </fieldset>
+</div>

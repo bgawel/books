@@ -3,6 +3,6 @@ Frontend.BooksCreateRoute = Ember.Route.extend({
     this.render('book.create');
   },
   setupController: function(controller){
-    controller.set('model', Ember.Object.create({authors:[Ember.Object.create({id: new Date().getTime()})]}));
+    controller.set('model', Ember.Object.create({authors:[Ember.Object.create({id: -new Date().getTime()})]}));
   }
 });

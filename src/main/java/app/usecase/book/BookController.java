@@ -64,17 +64,7 @@ public class BookController {
     @ResponseBody
     Map<String, Map<String, Object>> createBook(@RequestBody final Book newBook) {
         return new HashMap<String, Map<String, Object>>() {{
-            put("author", bookDTO.apply(bookUseCases.createBook(newBook)));
-        }};
-    }
-
-    @SuppressWarnings("serial")
-    @RequestMapping(value = "/book/{id}", method = RequestMethod.PUT)
-    @ResponseBody
-    Map<String, Map<String, Object>> updateBook(@PathVariable("id") final Long id, @RequestBody final Book book) {
-        book.setId(id);
-        return new HashMap<String, Map<String, Object>>() {{
-            put("author", bookDTO.apply(bookUseCases.updateBook(book)));
+            put("book", bookDTO.apply(bookUseCases.createBook(newBook)));
         }};
     }
 }

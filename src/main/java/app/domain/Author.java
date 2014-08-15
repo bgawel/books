@@ -10,11 +10,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OrderBy;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @JsonIgnoreProperties(ignoreUnknown = true)
+@Table(name = "AUTHOR", uniqueConstraints = @UniqueConstraint(columnNames = {"firstName", "lastName"}))
 public class Author {
 
     @Id
